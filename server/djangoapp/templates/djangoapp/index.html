@@ -21,10 +21,28 @@
         <div class="container-fluid">
             <div class="navbar-header">
                   <a class="navbar-brand" href="about">About</a>
+                  <a class="navbar-brand" href="contact">Contact Us</a>
+                  <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li>
+                         <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                         <a class="btn btn-link" href="logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                         <form class="form-inline" action="login" method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                 <input type="text" class="form-control" placeholder="Username" name="username" >
+                                 <input type="password" class="form-control" placeholder="Password" name="psw" >
+                                 <button class="btn btn-primary" type="submit">Login</button>
+                                 <a class="btn btn-link" href="signup">Sign Up</a>
+                            </div>
+                         </form>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
-            <div class="navbar-header">
-                <a class="navbar-brand" href="contact">Contact Us</a>
-          </div>
         </div>
     </nav>
     <!--Add a dealer table here -->
