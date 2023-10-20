@@ -15,14 +15,11 @@ jobs: # list of things to do
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
       - name: Code Checkout
         uses: actions/checkout@v3
-
       - name: Install Dependencies
         run: npm install
         working-directory: functions/sample/nodejs
-
       - name: Code Linting
         run: npm run lint
         working-directory: functions/sample/nodejs
