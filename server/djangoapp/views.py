@@ -7,7 +7,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
-from .restapis import get_dealers_from_cf, get_request
+from .restapis import get_dealers_from_cf, get_request, get_dealer_reviews_from_cf,post_request
+from .models import CarModel, CarMake, CarDealer, DealerReview, ReviewPost
 import logging
 import json
 
@@ -94,6 +95,21 @@ def get_dealer_details(request, dealer_id):
 
 
 # Create a `add_review` view to submit a review
-# def add_review(request, dealer_id):
-# ...
+def add_review(request, dealer_id):
+    if request.user.is_authenticated:
+        username = request.user.username
+        url = "https://lequanghuy21-5000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/api/post_review"
+        payload = dict()
+        review = dict()
+        review["time"] = datetime.utcnow().isoformat()
+        review["name"] = username
+        review["dealership"] = dealer_id
+        review["review"] = request.POST["review"]
+        review["purchase"] = False
+
+        payload["review"] = review
+
+        respone = post_request(url, payload, dealerId=dealer_id)
+
+
 
