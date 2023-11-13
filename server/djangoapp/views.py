@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
 from .restapis import get_dealers_from_cf, get_request, get_dealer_reviews_from_cf,post_request
-from .models import CarModel, CarMake, CarDealer, DealerReview, ReviewPost
+from .models import CarModel, CarMake, CarDealer, DealerReview
 import logging
 import json
 
@@ -94,6 +94,11 @@ def get_dealerships(request):
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
 def get_dealer_details(request, dealer_id):
+    context = {}
+    url = ""
+    dealer_reviews = get_dealer_reviews_from_cf(url,id = dealer_id)
+    context["dealer_reviews"] = dealer_reviews
+    return render(request,'djangoapp:dealer_details', context)
 
 
 # Create a `add_review` view to submit a review
