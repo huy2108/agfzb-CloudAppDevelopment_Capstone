@@ -95,7 +95,7 @@ def get_dealerships(request):
 # Create a `get_dealer_details` view to render the reviews of a dealer
 def get_dealer_details(request, dealer_id):
     context = {}
-    url = ""
+    url = "https://lequanghuy21-5000.theiadocker-2-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/api/get_reviews"
     dealer_reviews = get_dealer_reviews_from_cf(url,id = dealer_id)
     context["dealer_reviews"] = dealer_reviews
     return render(request,'djangoapp:dealer_details', context)
