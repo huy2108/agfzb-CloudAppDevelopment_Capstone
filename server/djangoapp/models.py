@@ -4,8 +4,8 @@ from django.utils.timezone import now
 
 # Create your models here.
 class CarMake(models.Model):
-    Name = models.CharField(null=False,max_length=30)
-    Description = models.CharField(null=False,max_length=30)
+    name = models.CharField(null=False,max_length=30)
+    description = models.CharField(null=False,max_length=30)
 
     def __str__(self):
         return self.Name + " " + self.Description
@@ -26,11 +26,11 @@ class CarModel(models.Model):
         (WAGON, "WAGON")
     ]
     
-    carmake = models.ForeignKey(CarMake,null=True,on_delete=models.CASCADE)
-    Id = models.IntegerField()
-    Name = models.CharField(null=False, max_length=30)
-    Type = models.CharField(null=False, max_length=30,choices=type_choices)
-    Year = models.DateField()
+    make = models.ForeignKey(CarMake,null=True,on_delete=models.CASCADE)
+    id = models.IntegerField()
+    name = models.CharField(null=False, max_length=30)
+    type = models.CharField(null=False, max_length=30,choices=type_choices)
+    year = models.DateField()
 
     def __str__(self):
         return self.Name + " " + self.Type
