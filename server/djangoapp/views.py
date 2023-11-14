@@ -103,6 +103,12 @@ def get_dealer_details(request, dealer_id):
 
 # Create a `add_review` view to submit a review
 def add_review(request, dealer_id):
+    if request.method == "GET":
+        context = {}
+        context["dealer_id"] = dealer_id
+        return render(request,'djangoapp:add_review',context)
+
+
     if request.user.is_authenticated:
         username = request.user.username
         url = "https://lequanghuy21-5000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/api/post_review"
