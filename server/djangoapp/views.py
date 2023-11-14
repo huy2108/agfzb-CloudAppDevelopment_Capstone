@@ -110,21 +110,21 @@ def add_review(request, dealer_id):
         context["cars"] = car
         return render(request,'djangoapp:add_review',context)
 
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            username = request.user.username
+            url = "https://lequanghuy21-5000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/api/post_review"
+            payload = dict()
+            review = dict()
+            review["time"] = datetime.utcnow().isoformat()
+            review["name"] = username
+            review["dealership"] = dealer_id
+            review["review"] = request.POST["review"]
+            review["purchase"] = False
 
-    if request.user.is_authenticated:
-        username = request.user.username
-        url = "https://lequanghuy21-5000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/api/post_review"
-        payload = dict()
-        review = dict()
-        review["time"] = datetime.utcnow().isoformat()
-        review["name"] = username
-        review["dealership"] = dealer_id
-        review["review"] = request.POST["review"]
-        review["purchase"] = False
+            payload["review"] = review
 
-        payload["review"] = review
-
-        respone = post_request(url, payload, dealerId=dealer_id)
+            respone = post_request(url, payload, dealerId=dealer_id)
 
 
 
