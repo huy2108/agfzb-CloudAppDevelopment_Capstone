@@ -17,7 +17,7 @@
             <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
             <select name="car" id="car" class="form-select" required>
                 {% for car in cars %}
-                    <option selected value={{car.id}}>{{car.name}}-{{car.make.name}}-{{ car.year|date:"Y" }}</option>
+                    <option selected value={{car.car_id}}>{{car.name}}-{{car.make.name}}-{{ car.year|date:"Y" }}</option>
                 {% endfor %}
             </select>
             <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
