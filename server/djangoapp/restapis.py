@@ -89,16 +89,16 @@ def get_dealer_reviews_from_cf(url, **kwargs):
         for dealer_review in reviews:
             print(dealer_review)
             review_obj = DealerReview(
-                dealership=dealer_review.get("dealership"),
-                name=dealer_review.get("name"),
-                purchase=dealer_review.get("purchase"),
-                review=dealer_review.get("review"),
-                purchase_date=dealer_review.get("purchase_date"),
-                car_make=dealer_review.get("car_make"),
-                car_model=dealer_review.get("car_model"),
-                car_year=dealer_review.get("car_year"),
+                dealership=dealer_review["dealership"],
+                name=dealer_review["name"],
+                purchase=dealer_review["purchase"],
+                review=dealer_review["review"],
+                purchase_date=dealer_review["purchase_date"],
+                car_make=dealer_review["car_make"],
+                car_model=dealer_review["car_model"],
+                car_year=dealer_review["car_year"],
                 sentiment='',
-                id=dealer_review.get("id")
+                id=dealer_review["id"]
             )
 
             review_obj.sentiment = analyze_review_sentiments(review_obj.review)
