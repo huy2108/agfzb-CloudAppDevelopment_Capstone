@@ -8,7 +8,7 @@ class CarMake(models.Model):
     description = models.CharField(null=False,max_length=30)
 
     def __str__(self):
-        return self.Name + " " + self.Description
+        return self.name + " " + self.description
 
 # <HINT> Create a Car Make model `class CarMake(models.Model)`:
 # - Name
@@ -33,7 +33,7 @@ class CarModel(models.Model):
     year = models.DateField()
 
     def __str__(self):
-        return self.Name + " " + self.Type
+        return self.name + " " + self.type
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
 # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
 # - Name
