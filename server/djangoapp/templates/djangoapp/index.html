@@ -30,7 +30,7 @@
                     </li>
                     {% else %}
                     <li>
-                         <form class="form-inline" action="login" method="post">
+                         <form class="form-inline" action="login/" method="POST">
                             {% csrf_token %}
                             <div class="input-group">
                                  <input type="text" class="form-control" placeholder="Username" name="username" >
