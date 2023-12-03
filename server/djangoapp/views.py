@@ -151,9 +151,9 @@ def add_review(request, id):
 
             payload["review"] = review
 
-            respone = post_request(url, payload, dealerId=id)
+            respone = post_request(url, payload, id=id)
 
-            return redirect("djangoapp:dealer_details", dealer_id=id)
+            return redirect("djangoapp:dealer_details", id=id)
 
 
 
