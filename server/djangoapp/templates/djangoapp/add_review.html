@@ -12,14 +12,20 @@
 </head>
     <body>
     <!--Add review form here -->
-        <form action="{% url 'djangoapp:add_review' dealer_id %}" method="POST">
+        <form action="{% url 'djangoapp:add_review' dealer.id %}" method="POST">
+            {% csrf_token %}
+            <h1>Add a review about <strong>{{dealer.full_name}}</strong></h1>
+            <label for="content"><strong>Enter the review content:</strong></label>
             <textarea class="form-control" id="content" name="content" rows="2" required></textarea>
-            <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
+            <input type="checkbox" name="purchasecheck" id="purchasecheck">
+            <label for="purchasecheck">Has purchased the car from {{dealer.full_name}}? (select purchased car information below if checked)</label></br>
+            <label for="car"><strong>Select your car (model-make-year)</strong></label>
             <select name="car" id="car" class="form-select" required>
                 {% for car in cars %}
                     <option selected value={{car.car_id}}>{{car.name}}-{{car.make.name}}-{{ car.year|date:"Y" }}</option>
                 {% endfor %}
-            </select>
+            </select></br>
+            <label for="purchasedate"><strong>Select Your Purchase Date:</strong></label>
             <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
             <button value="submit">Submit</button>
         </form>
